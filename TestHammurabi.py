@@ -1,5 +1,6 @@
+from Hammurabi import Hammurabi
 
-class HammurabiTest:
+class Test:
     def __init__(self):
         self.ham = Hammurabi()
 
