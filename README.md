@@ -65,7 +65,7 @@ Each year, print out a summary similar to the following:
     The city owns 1000 acres of land.
     Land is currently worth 19 bushels per acre.
 
-The above summary represents the initial state, at the _beginning_ of the first year--that is, when you first take office, and before you do any of the computations below). So, for example, the previous year (under a different ruler) must have started with 95 people; none starved, and 5 entered the kingdom, so as you enter office you rule 100 people.
+The above summary represents the initial state, at the _beginning_ of the first year--that is, when you first take office, and before you do any of the computations below. So, for example, the previous year (under a different ruler) must have started with 95 people; none starved, and 5 entered the kingdom, so as you enter office you rule 100 people.
 
 Here's what your `playGame` method needs to do each year, for up to 10 years:
 

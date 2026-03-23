@@ -4,7 +4,6 @@ class Hammurabi:
     def __init__(self):
         self.rand = random.Random()
 
-    # --- INPUT HELPER METHODS (Your logic) ---
     def askHowManyAcresToBuy(self, price, bushels):
         while True:
             try:
@@ -40,8 +39,58 @@ class Hammurabi:
                     return plant
                 print("Check your population, land, or grain limits!")
             except ValueError: print("Enter a whole number.")
+    
+    def plague_deaths(population):
+        if random.random() < 0.15:
+            return population // 2
+        return 0
 
-    # --- MAIN GAME LOOP ---
+    def starvation_deaths(population, bushels_fed):
+        needed = population * 20
+        if bushels_fed >= needed:
+            return 0
+        return population - (bushels_fed // 20)
+
+    def uprising(population, starved):
+        return starved > (population * 0.45)
+
+    def immigrants(population, acres_owned, grain_in_storage):
+        return (20 * acres_owned + grain_in_storage) // (100 * population) + 10
+
+    def harvest(acres_planted):
+        yield_per_acre = random.randint(1, 6)
+        return yield_per_acre * acres_planted, yield_per_acre
+
+    def grain_eaten_by_rats(bushels):
+        if random.random() < 0.40:
+            percentage = random.uniform(0.1, 0.3)
+            return int(bushels * percentage)
+        return 0
+
+    def new_cost_of_land():
+        return random.randint(17, 23)
+
+    def print_summary(year, population, starved, immigrants, deaths, harvest_yield, rats_ate, bushels, acres, land_cost):
+        print(f"\n--- Year {year} Report ---")
+        if deaths > 0: print(f"A plague killed {deaths} people.")
+        print(f"{starved} people starved.")
+        print(f"{immigrants} people came to the city.")
+        print(f"The harvest was {harvest_yield} bushels per acre.")
+        print(f"Rats ate {rats_ate} bushels.")
+        print(f"Population: {population} | Storage: {bushels} | Acres: {acres}")
+        print(f"Land is trading at {land_cost} bushels per acre.")
+
+    def final_summary(population, acres, total_starved):
+        acres_per_person = acres / population
+        print("\n=== FINAL GAME STATS ===")
+        print(f"Total Starved over 10 years: {total_starved}")
+        print(f"Acres per person: {acres_per_person:.2f}")
+    
+        if total_starved > 200 or acres_per_person < 7:
+            print("The people are glad to see you go. You were a harsh ruler.")
+        else:
+            print("You have ruled wisely! The city prospers.")
+
     def playGame(self):
         grain = 2800
         population = 100
